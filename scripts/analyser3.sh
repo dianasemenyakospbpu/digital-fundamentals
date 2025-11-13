@@ -7,7 +7,7 @@ do
     for file in $(cat $1$i)
     do
         age=$(echo $file | cut -d ":" -f2)
-        if [["$age" -gt 18]]
+        if [["$age" -ge 18]]
         then
             sov=$((sov+1))
         else
