@@ -1,19 +1,29 @@
 #!/bin/bash
-
-min=1; max=100
+min=50
+infomin=""
+max=0
+infomax=""
 for i in $(ls $1)
 do
-   for file in $(cat $1$i)
-   do
-      age=$(echo $file | cut -d ":" -f2)
-      if [ $age -lt $min ]
-      then
-       min=$age
-      elif [ $age -gt $max ]
-      then
-         max=$age
-      fi
-   done
+    for string in $(cat $1$i)
+    do
+        age=$(echo $string | cut -d ":" -f2)
+        if [[ $age -gt $max ]]
+        then
+            max=$age
+            name=$(echo $string | cut -d ":" -f1)
+            email=$(echo $string | cut -d ":" -f3)
+            infomax=$(echo -e "Имя: $name, возраст: $age, почта: $email")
+        fi
+        if [[ $age -lt $min ]]
+        then
+            min=$age
+            name=$(echo $string | cut -d ":" -f1)
+            email=$(echo $string | cut -d ":" -f3)
+            infomin=$(echo -e "Имя: $name, возраст: $age, почта: $email")
+        fi
+    done
 done
-echo $min
-echo $max
+
+echo $infomin
+echo $infomax
