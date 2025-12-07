@@ -1,2 +1,2 @@
 # digital-fundamentals
-скрипты
+практики оцт
